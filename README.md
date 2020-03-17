@@ -4,6 +4,16 @@
 This is a tiny library which allows you to set up rate-limiting using SparkJava. If you run an API and need to rate-limit requests then this is the lib for you!
 
 ## Usage
+This rate-limiter will add 3 headers when a request comes in, it will then test if the max amount has been hit. If it does get it then this sends an empty `429` status code.
+
+#### Headers
+Clients just need to look for and respect these headers if they do not wish to be rate-limited.
+```
+X-RateLimit-Limit: 30
+X-RateLimit-Remaining: 29
+X-RateLimit-Reset: 49999
+```
+
 ### Basic
 Here's a basic usage which allows for 30 requests in a minute span using the requester IP address as the defining key.
 This will map to all /api requests.
